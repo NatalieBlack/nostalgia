@@ -26,9 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -36,7 +33,7 @@ gem 'omniauth-linkedin'
 # gem 'capistrano-rails', group: :development
 
 gem 'twitter'
-
+gem 'tumblr_client'
 gem "figaro"
 
 group :development, :test do
