@@ -1,4 +1,6 @@
 .memory
-  = @memory.display
+  = @memory.display.html_safe
 
 = button_to "Take me back", memories_path, method: :get, id: 'new_memory', remote: :true
+<!--<a class="embedly-card" href="http://firstactloadedgun.tumblr.com/post/132404724902">First Act Loaded Gun</a>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>-->

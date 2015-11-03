@@ -5,6 +5,6 @@ class Tweet < ActiveRecord::Base
   belongs_to :user
 
   def display
-  	text
+    $twitter.oembed(twitter_id).html
   end
 end
