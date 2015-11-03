@@ -39,55 +39,12 @@ namespace :import do
           time: convert_tumblr_time(p['timestamp']),
           url: p['post_url']
         })
-        if p['type'] == 'text'
-            TumblrTextPost.create({
-                tumblr_post_id: new_post.id,
-                title: p['title'],
-                body: p['body']
-            })
-        elsif p['type'] == 'photo'
-            tpp = TumblrPhotoPost.create({
-                tumblr_post_id: new_post.id,
-                caption: p['caption']
-            })
-            p['photos'].each do |photo|
-                tpp.tumblr_photos.create({
-                  caption: photo['caption'],
-                  url: photo['original_size']['url'],
-                  width:photo['original_size']['width'],
-                  height:photo['original_size']['height']
-                })
-            end
-        elsif p['type'] == 'quote'
-            TumblrQuotePost.create( {
-                tumblr_post_id: new_post.id,
-                text: p['text'],
-                source: p['source']
-                })
-        elsif p['type'] == 'link'
-        elsif p['type'] == 'chat'
-        elsif p['type'] == 'audio'
-        elsif p['type'] == 'video'
-        elsif p['type'] == 'answer'
-        end
         p.tags.each do |t|
             new_post.tags.create({
                 content: t
             })
         end
       end
-
-      posts = $tumblr.posts(u.tumblr_url, type: 'photo', limit: 10)
-
-      posts.each do |p|
-        TumblrPost.create({
-          user_id: u.id,
-          tumblr_id: p['id'],
-          time: convert_tumblr_time(p['timestamp']),
-          photos: p[''],
-          caption: p[''],
-          url: p['post_url']
-        })
 
       end
     end
