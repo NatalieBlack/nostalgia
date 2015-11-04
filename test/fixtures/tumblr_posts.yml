@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  url: MyString
+  tumblr_id: 1
+  time: 2015-11-03 21:55:12
+
+two:
+  user_id: 1
+  url: MyString
+  tumblr_id: 1
+  time: 2015-11-03 21:55:12

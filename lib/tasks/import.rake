@@ -39,13 +39,12 @@ namespace :import do
           time: convert_tumblr_time(p['timestamp']),
           url: p['post_url']
         })
-        p.tags.each do |t|
-            new_post.tags.create({
+        p['tags'].each do |t|
+            TumblrTag.create({
+                tumblr_post_id: new_post.id,
                 content: t
             })
         end
-      end
-
       end
     end
 

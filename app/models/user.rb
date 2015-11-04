@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :omniauthable
 
   has_many :tweets
+  has_many :tumblr_posts
   
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
