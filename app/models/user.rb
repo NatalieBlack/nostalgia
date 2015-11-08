@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :tumblr_posts
   
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_uniqueness_of :twitter_name, :tumblr_url
 
   def memories
     tweets + tumblr_posts
