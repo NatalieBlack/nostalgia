@@ -33,8 +33,10 @@ gem 'devise'
 
 gem 'twitter'
 gem 'tumblr_client'
+
 gem "figaro"
 gem 'httparty'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
