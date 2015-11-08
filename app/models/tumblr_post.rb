@@ -5,6 +5,7 @@ class TumblrPost < ActiveRecord::Base
     embed_code = html.scan( /embed_key":"([^"]*)"/)[0][0]
     embed_did = html.scan( /embed_did":"([^"]*)"/)[0][0]
     
-    "<div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/#{embed_code}/#{tumblr_id}\" data-did=\"#{embed_did}\"><a href=\"#{url}\">#{url}</a></div><script async src=\"https://secure.assets.tumblr.com/post.js\"></script>"
+    html = "<div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/#{embed_code}/#{tumblr_id}\" data-did=\"#{embed_did}\"><a href=\"#{url}\">#{url}</a></div><script async src=\"https://secure.assets.tumblr.com/post.js\"></script>"
+    html.html_safe
   end
 end
