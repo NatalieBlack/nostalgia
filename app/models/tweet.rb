@@ -5,6 +5,6 @@ class Tweet < ActiveRecord::Base
   belongs_to :user
 
   def display
-    $twitter.oembed(twitter_id).html.html_safe
+    "<div class=\"tweet_outer\">#{$twitter.oembed(twitter_id).html}</div>".html_safe
   end
 end
