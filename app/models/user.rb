@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def load_memories
-    Memory.history_for_user(self)
+    ImportMemoriesJob.perform_later(self)
   end
 
   def email_verified?
