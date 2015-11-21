@@ -1,0 +1,13 @@
+.notice {
+}
+
+.alert {
+    background: $peach;
+    margin: 10px auto;
+    border-radius: $br;
+    text-align: center;
+    line-height: 3;
+    @include media($medium-screen) {
+        width: 60%;
+    }
+}

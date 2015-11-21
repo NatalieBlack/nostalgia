@@ -5,31 +5,22 @@
 
   <fieldset>
       <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Your email" %>
       </div>
       <div class="field">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, placeholder: "Your name" %>
       </div>
       <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Create a password", title:  "#{@minimum_password_length} characters minimum" %>
       </div>
       <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Re-type password" %>
       </div>
       <div class="field">
-        <%= f.label :twitter_name %>
-        <%= f.text_field :twitter_name %>
+        <%= f.text_field :twitter_name, placeholder: "Your twitter username" %>
       </div>
       <div class="field">
-        <%= f.label :tumblr_url %>
-        <%= f.text_field :tumblr_url %>
+        <%= f.text_field :tumblr_url, placeholder: "Your tumblr url" %>
       </div>
   </fieldset>
 

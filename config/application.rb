@@ -24,5 +24,13 @@ module Nostalgia
     config.active_record.raise_in_transactional_callbacks = true
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.to_prepare do
+      Devise::SessionsController.layout "landing"
+      Devise::RegistrationsController.layout "landing"
+      Devise::ConfirmationsController.layout "landing"
+      Devise::UnlocksController.layout "landing"
+      Devise::PasswordsController.layout "landing"
+    end
   end
 end

@@ -1,0 +1,60 @@
+
+.landing {
+    form{
+        border-radius: $br;
+
+        input{
+            margin: 0px;
+        }
+
+        .field{
+            margin: 0.7rem;
+        }
+
+        em {
+            font-size: 0.75rem;
+        }
+    }
+
+    background-color: $landing;
+
+    .content {
+        padding: 15px;
+        border-radius: $br;
+        border: 1px $light-gray solid;
+    }
+
+    .content_frame {
+        padding: 15px;
+        border-radius: $br;
+        border: 1px $light-gray solid;
+        background-color: $landing-light;
+        @include media($medium-screen) {
+            width: 60%;
+            margin: 10px auto;
+        }
+    }
+}
+
+.ui-tooltip-content {
+  background: $light-gray;
+  padding: 5px;
+}
+.ui-tooltip {
+  display: inline-block;
+}
+.ui-tooltip::before {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-bottom: 5px solid $light-gray;
+    content: "";
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+    width: 0px;
+    height: 0px;
+}
