@@ -10,11 +10,9 @@ body {
     margin: 10px auto;
     border-radius: $br;
     text-align: center;
-    line-height: 3;
+    line-height: 2.3;
+    font-size: 1.5rem;
     @include media($medium-screen) {
-        width: 60%;
-    }
-    @include media($large-screen) {
         width: 75%;
     }
 }
@@ -22,12 +20,14 @@ body {
 header {
   margin: 0px;
   padding: 0.25rem 0.75rem;
-  //background: url('wavegrid.png');
-  //background-size: 8rem;
-  //background: url('knitting250px.png');
-  //background-size: 20rem;
-  background: url('xv.png');
+  //border-bottom: 2.5px $medium-gray solid;
+  background: url('wavegrid.png');
   background-size: 10rem;
+  opacity: 0.8;
+  //background: url('knitting250px.png');
+  //background-size: 25rem;
+  //background: url('xv.png');
+  //background-size: 10rem;
   h1 {
     font-size: 3.5rem;
     @include media($medium-screen) {

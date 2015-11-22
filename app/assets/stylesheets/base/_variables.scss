@@ -1,7 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Pontano+Sans);
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 // Typography
-$base-font-family: 'josefin sans', $helvetica, sans-serif;
+$base-font-family: 'Pontano Sans','josefin sans', $helvetica, sans-serif;
 $heading-font-family: 'Amatic SC', cursive;
 
 // Font Sizes
@@ -26,7 +27,8 @@ $light-gray: #DEEDEE;
 $pale-gray: #F9FCFC;
 $landing: #B2EEDF;
 $landing-light: #E4FCF6;
-$peach: #FFD7BF;
+$landing-dark: #83D8C3;
+$peach: #FFE6BF;
 
 // Font Colors
 $base-font-color: $dark-gray;

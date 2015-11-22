@@ -1,5 +1,7 @@
 .landing {
 
+  background-color: $landing;
+
   h2 {
     font-size: 2.25rem;
     @include media($medium-screen) {
@@ -19,6 +21,7 @@
 
     label {
       font-weight: 100;
+      font-size: 1.5rem;
     }
 
     input{
@@ -30,15 +33,21 @@
       margin: 0.7rem;
     }
 
-    .actions {
-      input {
-        background: $landing;
-      }
-    }
 
   }
 
-  background-color: $landing;
+  #error_explanation {
+    background: $peach;
+    border-radius: $br;
+    margin: 0rem 1rem;
+    padding: 0.9rem;
+    font-size: 1.25rem;
+
+    h2 {
+      font-family: $base-font-family;
+      font-size: 1.5rem;
+    }
+  }
 
   .content {
       padding: 0.5rem 0px;
@@ -52,15 +61,55 @@
       border-radius: $br;
       border: 1px $light-gray solid;
       background-color: $landing-light;
-      #new_user input{
-        font-size: 1.25rem;
-        @include media($medium-screen) {
-          font-size: 1.95rem;
-          line-height: 2.1rem;
+      #new_user {
+        .actions {
+          input {
+            background: $landing;
+
+            &:hover {
+              border: none;
+              color: $dark-gray;
+            }
+
+            &:focus {
+              border: none;
+              box-shadow: 0px 5px 5px $dark-gray;
+            }
+          }
         }
-        @include media($large-screen) {
+
+        label[for="user_remember_me"]:hover {
+          color: $medium-gray;
+        }
+
+        input[type=checkbox] {
+          transform: scale(1.5);
+          margin: 0px 3px 3px;
+
+          &:hover {
+          }
+        }
+
+        input {
           font-size: 1.25rem;
-          line-height: 1.5rem;
+          &:hover {
+            border: 0.1rem $medium-gray solid;
+          }
+          &:focus {
+            box-shadow: none;
+            border-bottom: 0.25rem $medium-gray solid;
+            border-top: 0.1rem $medium-gray solid;
+            border-left: 0.1rem $medium-gray solid;
+            border-right: 0.1rem $medium-gray solid;
+          }
+          @include media($medium-screen) {
+            font-size: 1.95rem;
+            line-height: 2.1rem;
+          }
+          @include media($large-screen) {
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+          }
         }
       }
       @include media($medium-screen) {
@@ -68,16 +117,21 @@
           margin: 10px auto;
           
       }
-      @include media($large-screen) {
-          width: 60%;
-      }
    }
+}
+
+//stop scrollbar from appearing alone with tooltip
+.ui-tooltip, .arrow:after {
+      position: absolute;
 }
 
 .ui-tooltip-content {
   background: $medium-gray;
   padding: 5px;
   color: $pale-gray;
+  @include media($medium-screen) {
+    font-size: 1.5rem;
+  }
 }
 .ui-tooltip {
   display: inline-block;
@@ -86,9 +140,12 @@
   display: none;
   width: 0px;
   height: 0px;
+  position: fixed;
+  bottom: 30;
 }
+
 
 .devise_links {
   margin-top: 10px;
-  font-size: 1.95rem;
+  font-size: 1.75rem;
 }
