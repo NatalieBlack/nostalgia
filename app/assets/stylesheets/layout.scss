@@ -1,0 +1,49 @@
+body {
+  margin: 0px;
+}
+
+.notice {
+}
+
+.alert {
+    background: $peach;
+    margin: 10px auto;
+    border-radius: $br;
+    text-align: center;
+    line-height: 2.3;
+    font-size: 1.5rem;
+    @include media($medium-screen) {
+        width: 75%;
+    }
+}
+
+header {
+  margin: 0px;
+  padding: 0.25rem 0.75rem;
+  //border-bottom: 2.5px $medium-gray solid;
+  background: url('wavegrid.png');
+  background-size: 10rem;
+  opacity: 0.8;
+  //background: url('knitting250px.png');
+  //background-size: 25rem;
+  //background: url('xv.png');
+  //background-size: 10rem;
+  h1 {
+    font-size: 3.5rem;
+    @include media($medium-screen) {
+      font-size: 5rem;
+    }
+    margin-bottom: 0px;
+    color: $medium-gray;
+    display: inline-block;
+  }
+
+  .links {
+    display: inline-block;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-family: $heading-font-family;
+  }
+  clear: both;
+}

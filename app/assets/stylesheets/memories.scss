@@ -1,3 +1,60 @@
-// Place all the styles related to the memories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html{
+    font-size: 16px;
+    margin: 0px;
+}
+
+.content{
+    margin: 0px auto;
+    text-align: center;
+}
+
+.memory {
+    text-align: center;
+}
+
+.tumblr_post_outer, .tweet_outer{
+    display: inline-block;
+}
+
+
+#new_memory{
+    width: 100%;
+    font-family: $heading-font-family;
+    font-size: 1.75rem;
+}
+
+.take_me_back form{
+    width: 100%;
+    margin: 0px;
+    max-width: 100%;
+}
+
+/*-----------MOBILE--------------*/
+form {
+    font-size: 1rem;
+    width: 100%;
+    max-width: 30rem;
+}
+
+#new_user{
+    font-size: 1rem;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+/*--------------------------------*/
+@include media($medium-screen) {
+    form {
+        font-size: 1.5rem;
+    }
+    h2{
+        font-size: 2rem;
+    }
+}
+@include media($large-screen) {
+    form {
+        font-size: 1.3rem;
+    }
+}
