@@ -9,11 +9,15 @@
     = csrf_meta_tags
   %body
     %header
-      - if current_user
-        = link_to 'Sign out', destroy_user_session_path, {method: :delete, class: "nothing"}
-      - else
-        = link_to 'Sign in', new_user_session_path
-        = link_to 'Sign up', new_user_registration_path
+      %h1= Nostalgia
+      .links
+        - if current_user
+          = link_to 'Edit profile', edit_user_registration_path(current_user)
+          = "|"
+          = link_to 'Sign out', destroy_user_session_path, {method: :delete}
+        - else
+          = link_to 'Sign in', new_user_session_path
+          = link_to 'Sign up', new_user_registration_path
         
     %p.notice= notice
     %p.alert= alert

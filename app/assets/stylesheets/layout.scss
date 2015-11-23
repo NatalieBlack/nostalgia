@@ -35,5 +35,15 @@ header {
     }
     margin-bottom: 0px;
     color: $medium-gray;
+    display: inline-block;
   }
+
+  .links {
+    display: inline-block;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-family: $heading-font-family;
+  }
+  clear: both;
 }
