@@ -112,6 +112,15 @@
           }
         }
       }
+
+      .button_to {
+        margin: 1rem auto;
+      }
+
+      #back_link {
+        font-size: 1.1rem;
+      }
+
       @include media($medium-screen) {
           width: 75%;
           margin: 10px auto;
@@ -147,5 +156,5 @@
 
 .devise_links {
   margin-top: 10px;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
 }
