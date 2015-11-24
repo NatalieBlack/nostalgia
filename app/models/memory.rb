@@ -1,15 +1,22 @@
 class Memory
   def self.history_for_user(u)
-    puts "history for #{u.name}"
     twitter_history_for_user(u)
     tumblr_history_for_user(u)
   end
 
   def self.tumblr_history_for_user(u)
-      posts = $tumblr.posts(u.tumblr_url)
-      posts = posts['posts']
+      Rails.logger.info "tumblr history for #{u.name}"
+      posts = collect_posts_with_offset do |offset|
+        Rails.logger.info "calling tumblr API until #{offset}"
+        options = {}
+        options[:offset] = offset unless offset.nil?
+        $tumblr.posts(u.tumblr_url.gsub(/http:\/\//,''), options)['posts']
+      end
+      #posts = $tumblr.posts(u.tumblr_url.gsub(/http:\/\//,''))
+      #posts = posts['posts']
 
       posts.each do |p|
+        Rails.logger.info "creating tumblr post #{p['id']}"
         new_post = TumblrPost.create({
           user_id: u.id,
           tumblr_id: p['id'],
@@ -26,14 +33,16 @@ class Memory
   end
 
   def self.twitter_history_for_user(u)
-      tweets = collect_with_max_id do |max_id|
+      Rails.logger.info "tumblr history for #{u.name}"
+      tweets = collect_tweets_with_max_id do |max_id|
+          Rails.logger.info "calling twiter API until #{max_id}"
           options = {count: 200, include_rts: false}
           options[:max_id] = max_id unless max_id.nil?
           $twitter.user_timeline(u.twitter_name, options)
       end
       
       tweets.each do |tweet|
-        puts "creating tweet #{tweet.created_at}"
+        Rails.logger.info "creating tweet #{tweet.created_at}"
           Tweet.create( {
               user_id: u.id,
               time: tweet.created_at.to_datetime,
@@ -73,11 +82,17 @@ private
     DateTime.strptime(timestamp_int.to_s, '%s')
   end
 
-  def self.collect_with_max_id(collection=[], max_id=nil, &block)
-  puts max_id
+  def self.collect_tweets_with_max_id(collection=[], max_id=nil, &block)
     response = yield(max_id)
     collection += response
-    response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
+    response.empty? ? collection.flatten : collect_tweets_with_max_id(collection, response.last.id - 1, &block)
+  end
+
+  def self.collect_posts_with_offset(collection=[], offset=0, &block)
+    response = yield(offset)
+    collection += response
+    new_offset = offset + 20
+    response.empty? ? collection.flatten : collect_posts_with_offset(collection, new_offset, &block)
   end
 
 end

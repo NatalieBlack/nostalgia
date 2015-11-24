@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   end
 
   def load_memories
-    ImportMemoriesJob.perform_later(self)
+    Rails.logger.info "importing memories for #{name}"
+    Memory.history_for_user(self)
+    Rails.logger.info "importing memories for #{name}"
   end
 
   def email_verified?
