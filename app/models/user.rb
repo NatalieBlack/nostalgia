@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tweets
-  has_many :tumblr_posts
+  has_many :tweets, :dependent => :destroy
+  has_many :tumblr_posts, :dependent => :destroy
 
   after_create :load_memories
   
