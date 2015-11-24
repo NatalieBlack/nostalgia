@@ -6,6 +6,9 @@ gem 'haml-rails'
 gem 'rails', '4.2.2'
 # Use postgres as the database for Active Record
 gem 'pg'
+
+gem 'rails_12factor', group: :production
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bourbon'
@@ -40,7 +43,6 @@ gem 'tumblr_client'
 
 gem "figaro"
 gem 'httparty'
-gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
