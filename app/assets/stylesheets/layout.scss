@@ -21,7 +21,10 @@ header {
   margin: 0px;
   padding: 0.25rem 0.75rem;
   //border-bottom: 2.5px $medium-gray solid;
-  background: url('wavegrid.png');
+  //background: url('wavegrid.png');
+  background-image: image-url("wavegrid.png");
+
+
   background-size: 10rem;
   opacity: 0.8;
   //background: url('knitting250px.png');
