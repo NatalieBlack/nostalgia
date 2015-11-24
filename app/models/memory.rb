@@ -12,8 +12,6 @@ class Memory
         options[:offset] = offset unless offset.nil?
         $tumblr.posts(u.tumblr_url.gsub(/http:\/\//,''), options)['posts']
       end
-      #posts = $tumblr.posts(u.tumblr_url.gsub(/http:\/\//,''))
-      #posts = posts['posts']
 
       posts.each do |p|
         Rails.logger.info "creating tumblr post #{p['id']}"
