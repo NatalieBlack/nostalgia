@@ -9,7 +9,7 @@
     = csrf_meta_tags
   %body
     %header
-      %h1= Nostalgia
+      %h1= link_to "Nostalgia", root_path
       .links
         - if current_user
           = link_to 'Edit profile', edit_user_registration_path
