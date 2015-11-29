@@ -1,15 +1,16 @@
-html{
+html {
     font-size: 16px;
     margin: 0px;
 }
 
-.content{
+.content {
     margin: 5px auto;
     text-align: center;
 }
 
 .memory {
     text-align: center;
+    margin: 1rem;
 }
 
 .tumblr_post_outer, .tweet_outer{
@@ -17,13 +18,13 @@ html{
 }
 
 
-#new_memory{
+#new_memory {
     width: 100%;
     font-family: $heading-font-family;
     font-size: 1.75rem;
 }
 
-.take_me_back form{
+.take_me_back form {
     width: 100%;
     margin: 0px;
     max-width: 100%;
@@ -34,10 +35,6 @@ form {
     font-size: 1rem;
     width: 100%;
     max-width: 30rem;
-}
-
-#new_user{
-    font-size: 1rem;
 }
 
 h2{
@@ -57,4 +54,102 @@ h2{
     form {
         font-size: 1.3rem;
     }
+}
+
+#loading {
+  margin: 1rem;
+  display: none;
+} 
+
+.spinner {
+  animation: rotator $loading-duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $loading-duration ease-in-out infinite, 
+    colors ($loading-duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+        0% { stroke: $landing-dark; }
+        25% { stroke: $peach; }
+        50% { stroke: $landing-light; }
+        75% { stroke: $blue; }
+  100% { stroke: $dark-gray; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+
+.update {
+  background-size: 100% 100%;
+  display: block;
+}
+
+.generate_memories {
+  display: inline-block;
+  width: auto;
+  margin: 1rem;
+}
+
+input[type="submit"] {
+  box-shadow: 0 2px 5px 0 $shadow, 0 2px 10px 0 $shadow;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+      box-shadow: 0 5px 11px 0 $shadow, 0 4px 15px 0 $shadow;
+    }
+
+  &:focus {
+    box-shadow: 0 5px 11px 0 $shadow, 0 4px 15px 0 $shadow;
+    background-color: $blue;
+  }
+
+  &:active {
+    box-shadow: 0 8px 11px 0 $shadow-pressed, 0 8px 15px 0 $shadow-pressed;
+    background-color: $blue;
+  }
+
+  @include media($medium-screen) {
+
+    &:hover {
+      box-shadow: 0 5px 11px 0 $shadow, 0 4px 15px 0 $shadow;
+      background-color: $blue;
+    }
+
+  }
+}
+
+#twitter_submit {
+  background-image: image-url('twitter.svg');
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+}
+
+#tumblr_submit {
+  background-image: image-url('tumblr.svg');
+  opacity: 0.5;
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

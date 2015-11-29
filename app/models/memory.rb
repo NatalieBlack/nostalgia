@@ -1,7 +1,9 @@
 class Memory
   def self.history_for_user(u)
+    Rails.logger.info "importing memories for #{u.name}"
     twitter_history_for_user(u)
     tumblr_history_for_user(u)
+    Rails.logger.info "done importing memories for #{u.name}"
   end
 
   def self.tumblr_history_for_user(u)
@@ -28,6 +30,7 @@ class Memory
             })
         end
       end
+      return u.tumblr_posts
   end
 
   def self.twitter_history_for_user(u)
@@ -49,6 +52,7 @@ class Memory
               url: tweet.url
           })
       end
+      return u.tweets
   end
 
   def self.latest_for_user(u)
