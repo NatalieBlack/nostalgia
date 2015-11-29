@@ -1,5 +1,5 @@
 class TumblrPost < ActiveRecord::Base
-  has_many :tags, class_name: 'TumblrTags'
+  has_many :tags, class_name: 'TumblrTag', dependent: :destroy
   def display 
     html = HTTParty.get("#{url}/embed").body
     embed_code = html.scan( /embed_key":"([^"]*)"/)[0][0]
