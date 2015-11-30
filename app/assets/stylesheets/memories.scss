@@ -25,7 +25,6 @@ html {
   display: inline-block;
 }
 
-
 #new_memory {
   width: 100%;
   font-family: $heading-font-family;
@@ -73,7 +72,6 @@ h2{
 #complete, #import_latest input {
   border-radius: 50%;
   padding: 0;
-  background-color: $peach;
 }
 
 #latest_loading, #complete, #import_latest input {
@@ -90,6 +88,7 @@ h2{
   @include icon-button;
   background-image: image-url('complete.svg');
   display: none;
+  background-color: $light-gray;
 } 
 
 .spinner {
@@ -193,5 +192,6 @@ input[type="submit"] {
   input {
     @include icon-button;
     background-image: image-url('nostalgia.svg');
+    background-color: $peach;
   }
 }
