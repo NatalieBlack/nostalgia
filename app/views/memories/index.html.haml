@@ -9,10 +9,9 @@
   - current_user.sources_to_import.each do |source|
     = form_tag memories_path, class: 'generate_memories' do
       = hidden_field_tag :source, source
-      = submit_tag "", id: "#{source}_submit", disabled: current_user.imported?(source)
-  #loading
-    %svg{ class: "spinner", width:"65px", height:"65px", viewBox:"0 0 66 66", xmlns:"http://www.w3.org/2000/svg"}
-      %circle{ class:"path", fill:"none", "stroke-width":"6", "stroke-linecap":"round", cx:"33", cy:"33", r:"30"}
+      = submit_tag "", id: "#{source}_submit"
+  #initial_loading
+    = render '/shared/loading'
 
   .update
     = "" 

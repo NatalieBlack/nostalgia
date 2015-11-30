@@ -41,5 +41,12 @@ class User < ActiveRecord::Base
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
+  def chance_of_new_memories?
+    memories.any? &&
+    [
+    tweets.maximum(:created_at),
+    tumblr_posts.maximum(:created_at)
+    ].compact.max > 1.month.ago
+  end
 
 end

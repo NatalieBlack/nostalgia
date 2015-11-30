@@ -14,6 +14,8 @@ class MemoriesController < ApplicationController
       @memories = Memory.twitter_history_for_user(current_user)
     elsif params[:source] == "tumblr"
       @memories = Memory.tumblr_history_for_user(current_user)
+    else
+      @memories = Memory.history_for_user(current_user)
     end
 
     render json: {memories_count: @memories.count}

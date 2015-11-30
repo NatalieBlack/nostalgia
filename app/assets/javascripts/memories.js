@@ -1,7 +1,7 @@
 $(document).on('ready page:load', function() {
   $('.generate_memories').on('submit', function(e) {
     e.preventDefault();
-    $('#loading').show();
+    $('#initial_loading').show();
     $('.update').hide();
     $('.update').text('This could take a while.');
     $('.update').delay(3000).fadeIn();
@@ -9,7 +9,7 @@ $(document).on('ready page:load', function() {
 
     $.post(form.action, {"source":  form.source.value}, function(data) {
       $('.update').fadeOut();
-      $('#loading').fadeOut(function(){
+      $('#initial_loading').fadeOut(function(){
         $('.update').text(data['memories_count'] + " memories imported");
         $('.update').fadeIn();
         if(data['memories_count'] > 0) {
@@ -19,4 +19,12 @@ $(document).on('ready page:load', function() {
     });
 
   });
+
+  $('#import_latest').on('submit', function() {
+    $(this).hide();
+    $('#latest_loading').show();
+    $.post(form.action, function(data) {
+    });
+  });
+
 });
