@@ -1,63 +1,94 @@
+@mixin icon-button() {
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 html {
-    font-size: 16px;
-    margin: 0px;
+  font-size: 16px;
+  margin: 0px;
+  transition: box-shadow 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 }
 
 .content {
-    margin: 5px auto;
-    text-align: center;
+  margin: 5px auto;
+  text-align: center;
 }
 
 .memory {
-    text-align: center;
-    margin: 1rem;
+  text-align: center;
+  margin: 1rem;
 }
 
 .tumblr_post_outer, .tweet_outer{
-    display: inline-block;
+  display: inline-block;
 }
 
 
 #new_memory {
-    width: 100%;
-    font-family: $heading-font-family;
-    font-size: 1.75rem;
+  width: 100%;
+  font-family: $heading-font-family;
+  font-size: 1.75rem;
 }
 
 .take_me_back form {
-    width: 100%;
-    margin: 0px;
-    max-width: 100%;
+  width: 100%;
+  margin: 0px;
+  max-width: 100%;
 }
 
 /*-----------MOBILE--------------*/
 form {
-    font-size: 1rem;
-    width: 100%;
-    max-width: 30rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 30rem;
 }
 
 h2{
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 /*--------------------------------*/
 @include media($medium-screen) {
-    form {
-        font-size: 1.5rem;
-    }
-    h2{
-        font-size: 2rem;
-    }
+  form {
+    font-size: 1.5rem;
+  }
+  h2{
+    font-size: 2rem;
+  }
 }
 @include media($large-screen) {
-    form {
-        font-size: 1.3rem;
-    }
+  form {
+    font-size: 1.3rem;
+  }
 }
 
 #initial_loading {
   margin: 1rem;
+  height: 65px;
+  width: 65px;
+}
+
+#complete, #import_latest input {
+  border-radius: 50%;
+  padding: 0;
+  background-color: $peach;
+}
+
+#latest_loading, #complete, #import_latest input {
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+}
+
+#initial_loading, #latest_loading {
+  display: none;
+} 
+
+#complete {
+  @include icon-button;
+  background-image: image-url('complete.svg');
   display: none;
 } 
 
@@ -112,8 +143,6 @@ h2{
 
 input[type="submit"] {
   box-shadow: 0 2px 5px 0 $shadow, 0 2px 10px 0 $shadow;
-  transition: box-shadow 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out;
   opacity: 0.5;
 
   &:hover {
@@ -146,12 +175,6 @@ input[type="submit"] {
 
   }
 }
-@mixin icon-button() {
-  background-size: 80% 80%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 #twitter_submit {
   @include icon-button;
   background-image: image-url('twitter.svg');
@@ -170,10 +193,5 @@ input[type="submit"] {
   input {
     @include icon-button;
     background-image: image-url('nostalgia.svg');
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    padding: 0;
-    background-color: $peach;
   }
 }
