@@ -45,11 +45,20 @@ header {
   }
 
   .links {
+    margin: 1rem;
     display: inline-block;
     float: right;
     font-size: 1.5rem;
+    line-height: 2.25rem;
+    vertical-align: middle;
     font-weight: 900;
     font-family: $heading-font-family;
+
+    .text_links {
+      margin: 0.5rem;
+      vertical-align: middle;
+    }
   }
   clear: both;
 }
+

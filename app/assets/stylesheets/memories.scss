@@ -137,19 +137,35 @@ input[type="submit"] {
 
   }
 }
-
-#twitter_submit {
-  background-image: image-url('twitter.svg');
+@mixin icon-button() {
   background-size: 80% 80%;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
 }
 
+#twitter_submit {
+  @include icon-button;
+  background-image: image-url('twitter.svg');
+}
+
 #tumblr_submit {
+  @include icon-button;
   background-image: image-url('tumblr.svg');
-  opacity: 0.5;
-  background-size: 70% 70%;
-  background-repeat: no-repeat;
-  background-position: center;
+}
+
+#import_latest {
+  display: inline-block;
+  font-family: $heading-font-family;
+  width: auto;
+
+  input {
+    @include icon-button;
+    background-image: image-url('nostalgia.svg');
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    background-color: $peach;
+  }
 }
