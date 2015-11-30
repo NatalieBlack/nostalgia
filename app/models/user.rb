@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     [
     tweets.maximum(:created_at),
     tumblr_posts.maximum(:created_at)
-    ].compact.max > 1.month.ago
+    ].compact.max < 1.month.ago
   end
 
 end
