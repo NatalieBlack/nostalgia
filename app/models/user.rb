@@ -17,6 +17,26 @@ class User < ActiveRecord::Base
     tweets + tumblr_posts
   end
 
+  def sources_to_import
+    sources = []
+    potential = {twitter: twitter_name, tumblr: tumblr_url}
+
+    potential.each do |k, v|
+      sources << k.to_s unless v.nil?
+    end
+
+    return sources
+
+  end
+
+  def imported?(source)
+    if source == "twitter"
+      return tweets.any?
+    elsif source == "tumblr"
+      return tumblr_posts.any?
+    end
+  end
+
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end

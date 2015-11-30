@@ -112,20 +112,29 @@ h2{
 
 input[type="submit"] {
   box-shadow: 0 2px 5px 0 $shadow, 0 2px 10px 0 $shadow;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0.5;
 
   &:hover {
       box-shadow: 0 5px 11px 0 $shadow, 0 4px 15px 0 $shadow;
     }
 
-  &:focus {
-    box-shadow: 0 5px 11px 0 $shadow, 0 4px 15px 0 $shadow;
+
+  &:focus, &:focus:hover {
+    box-shadow: 0 5px 11px 0 $shadow-pressed, 0 4px 15px 0 $shadow-pressed;
+    background-color: $blue;
+    outline: 0;
+  }
+
+  &:active, &:active:hover {
+    box-shadow: 0 8px 11px 0 $shadow-pressed, 0 8px 15px 0 $shadow-pressed;
     background-color: $blue;
   }
 
-  &:active {
-    box-shadow: 0 8px 11px 0 $shadow-pressed, 0 8px 15px 0 $shadow-pressed;
-    background-color: $blue;
+  &:disabled, &:disabled:hover, &:disabled:focus, &:disabled:active {
+    opacity: 0.25;
+    box-shadow: none;
   }
 
   @include media($medium-screen) {
@@ -143,12 +152,10 @@ input[type="submit"] {
   background-size: 80% 80%;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.5;
 }
 
 #tumblr_submit {
   background-image: image-url('tumblr.svg');
-  opacity: 0.5;
   background-size: 70% 70%;
   background-repeat: no-repeat;
   background-position: center;
