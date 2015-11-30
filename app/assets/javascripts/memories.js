@@ -12,6 +12,9 @@ $(document).on('ready page:load', function() {
       $('#loading').fadeOut(function(){
         $('.update').text(data['memories_count'] + " memories imported");
         $('.update').fadeIn();
+        if(data['memories_count'] > 0) {
+          $(form).children('input[type=submit]').prop('disabled', true);
+        }
       });
     });
 
