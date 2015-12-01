@@ -22,8 +22,8 @@
           = link_to 'Sign in', new_user_session_path
           = link_to 'Sign up', new_user_registration_path
         
-    %p.notice= notice
-    %p.alert= alert
+    %p.notice= notice if notice
+    %p.alert= alert if alert
 
     .content
       = yield

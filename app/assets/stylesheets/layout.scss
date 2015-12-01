@@ -1,12 +1,4 @@
-body {
-  margin: 0px;
-}
-
-.notice {
-}
-
-.alert {
-    background: $peach;
+@mixin flash() {
     margin: 10px auto;
     border-radius: $br;
     text-align: center;
@@ -14,7 +6,22 @@ body {
     font-size: 1.5rem;
     @include media($medium-screen) {
         width: 75%;
+      font-size: 1.5rem;
     }
+}
+
+body {
+  margin: 0px;
+}
+
+.notice {
+  @include flash;
+  background: $landing;
+}
+
+.alert {
+  @include flash;
+  background: $peach;
 }
 
 header {

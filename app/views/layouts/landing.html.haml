@@ -12,8 +12,8 @@
     %header
       %h1= link_to "Nostalgia", root_path
         
-    %p.notice= notice
-    %p.alert= alert
+    %p.notice= notice if notice
+    %p.alert= alert if alert
 
     .content_frame
       .content
