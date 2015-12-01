@@ -13,10 +13,9 @@
       .links
         - if current_user.chance_of_new_memories?
           = render '/shared/import'
-        %span.text_links
+        .text_links
           = link_to 'Edit profile', edit_user_registration_path
-          = "|"
-          = link_to 'Sign out', destroy_user_session_path, {method: :delete}
+          = link_to 'Sign out', destroy_user_session_path, { method: :delete }
         
     %p.notice= notice if notice
     %p.alert= alert if alert

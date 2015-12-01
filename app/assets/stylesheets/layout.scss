@@ -42,18 +42,40 @@ header {
   }
 
   .links {
-    margin: 1rem;
     display: inline-block;
     float: right;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 2.25rem;
     vertical-align: middle;
     font-weight: 900;
     font-family: $heading-font-family;
+    margin: 0rem 0.5rem;
+
+    @include media($medium-screen) {
+      font-size: 1.5rem;
+      margin: 1rem;
+
+      .text_links {
+        margin: 0.5rem;
+      }
+    }
 
     .text_links {
-      margin: 0.5rem;
       vertical-align: middle;
+      display: inline-block;
+      margin-left: 0.5rem;
+
+      a {
+        display: block;
+        @include media($medium-screen) {
+          display: inline-block;
+          &:nth-child(even) {
+            &::before {
+              content: "|";
+            }
+          }
+        }
+      }
     }
   }
   clear: both;
