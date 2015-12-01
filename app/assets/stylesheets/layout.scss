@@ -20,20 +20,10 @@ body {
 header {
   margin: 0px 0px 2.5rem 0px;
   padding: 0.25rem 0.75rem;
-  //border-bottom: 2.5px $medium-gray solid;
-  //background: url('wavegrid.png');
-  //background-image: image-url("wavegrid.png");
 
   background: $pale-gray;
   box-shadow: 0px 5px 5px $dark-gray;
 
-
-  //background-size: 10rem;
-  //opacity: 0.8;
-  //background: url('knitting250px.png');
-  //background-size: 25rem;
-  //background: url('xv.png');
-  //background-size: 10rem;
   h1 {
     font-size: 3.5rem;
     @include media($medium-screen) {
