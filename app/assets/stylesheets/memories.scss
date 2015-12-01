@@ -65,8 +65,10 @@ h2{
 
 #initial_loading {
   margin: 1rem;
-  height: 65px;
-  width: 65px;
+  svg {
+    height: 65px;
+    width: 65px;
+  }
 }
 
 #complete, #import_latest input {
