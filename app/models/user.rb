@@ -43,11 +43,13 @@ class User < ActiveRecord::Base
 
   def chance_of_new_memories?
     memories.any? &&
-    ((twitter_name && tweets.empty?) || (tumblr_url && tumblr_posts.empty?)) ||
-    [
-    tweets.maximum(:created_at),
-    tumblr_posts.maximum(:created_at)
-    ].compact.max < 1.month.ago
+    (
+      ((twitter_name && tweets.empty?) || (tumblr_url && tumblr_posts.empty?)) ||
+      [
+      tweets.maximum(:created_at),
+      tumblr_posts.maximum(:created_at)
+      ].compact.max < 1.month.ago
+    )
   end
 
 end
