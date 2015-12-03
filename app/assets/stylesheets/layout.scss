@@ -34,7 +34,7 @@ header {
   h1 {
     font-size: 3.5rem;
     @include media($medium-screen) {
-      font-size: 5rem;
+      font-size: 4.99rem;
     }
     margin-bottom: 0px;
     color: $medium-gray;
