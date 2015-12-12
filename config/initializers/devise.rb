@@ -238,6 +238,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID
   #config.omniauth :tumblr, ENV[""], ENV[""]
   #config.omniauth :facebook, ENV[""], ENV[""]
+  config.omniauth :instagram, ENV["insta_id"], ENV["insta_secret"], setup: true
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

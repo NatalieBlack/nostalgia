@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable
 
   has_many :tweets, :dependent => :destroy
   has_many :tumblr_posts, :dependent => :destroy
+  has_many :identities
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   validates_uniqueness_of :twitter_name, :tumblr_url
@@ -50,6 +52,15 @@ class User < ActiveRecord::Base
       tumblr_posts.maximum(:created_at)
       ].compact.max < 1.month.ago
     )
+  end
+
+
+  def instagram
+    identities.where( :provider => "instagram" ).first
+  end
+
+  def instagram_client
+    @instagram_client ||= Instagram.client( access_token: instagram.accesstoken )
   end
 
 end

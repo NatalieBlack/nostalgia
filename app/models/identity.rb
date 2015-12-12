@@ -4,6 +4,9 @@ class Identity < ActiveRecord::Base
   validates_uniqueness_of :uid, :scope => :provider
 
   def self.find_for_oauth(auth)
-    find_or_create_by(uid: auth.uid, provider: auth.provider)
+    i = find_or_create_by(uid: auth.uid, provider: auth.provider)
+    i.update_attributes(accesstoken: auth.credentials.token, refreshtoken: auth.credentials.refresh_token)
+
+    i
   end
 end

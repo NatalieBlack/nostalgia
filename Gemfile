@@ -44,6 +44,8 @@ gem 'devise'
 
 gem 'twitter'
 gem 'tumblr_client'
+gem 'instagram'
+gem 'omniauth-instagram'
 
 gem "figaro"
 gem 'httparty'
