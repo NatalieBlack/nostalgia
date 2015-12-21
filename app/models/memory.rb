@@ -17,7 +17,6 @@ class Memory
         Rails.logger.info "calling instagram API until #{id}"
         url = "#{BASE_INSTAGRAM_URL}/#{u.instagram_name}/media"
         url += "?max_id=#{id}" unless id.nil?
-        binding.pry
         r = HTTParty.get(url)
         r['items']
       end
