@@ -1,4 +1,5 @@
 class Memory
+  BASE_INSTAGRAM_URL = 'https://www.instagram.com' 
   def self.history_for_user(u)
     Rails.logger.info "importing memories for #{u.name}"
     tweets = twitter_history_for_user(u)
@@ -6,6 +7,32 @@ class Memory
     memories = tweets + posts
     Rails.logger.info "done importing #{memories.count} memories for #{u.name}"
     return memories
+  end
+
+  def self.instagram_history_for_user(u)
+      Rails.logger.info "instagram history for #{u.name}"
+      created = []
+
+      posts = collect_instagram_posts_with_max_id(u) do |id|
+        Rails.logger.info "calling instagram API until #{id}"
+        url = "#{BASE_INSTAGRAM_URL}/#{u.instagram_name}/media"
+        url += "?max_id=#{id}" unless id.nil?
+        binding.pry
+        r = HTTParty.get(url)
+        r['items']
+      end
+
+      posts.each do |p|
+        break if u.instagram_posts.find_by(instagram_id: p['id'])
+        Rails.logger.info "creating instagram post #{p['id']}"
+
+        new_post = InstagramPost.create({
+          user_id: u.id,
+          instagram_id: p['id'],
+          time: convert_timestamp(p['created_time']),
+          url: p['link']
+        })
+      end
   end
 
   def self.tumblr_history_for_user(u)
@@ -27,7 +54,7 @@ class Memory
         new_post = TumblrPost.create({
           user_id: u.id,
           tumblr_id: p['id'],
-          time: convert_tumblr_time(p['timestamp']),
+          time: convert_timestamp(p['timestamp']),
           url: p['post_url']
         })
         p['tags'].each do |t|
@@ -71,7 +98,7 @@ class Memory
   end
 
 private
-  def self.convert_tumblr_time(timestamp_int)
+  def self.convert_timestamp(timestamp_int)
     DateTime.strptime(timestamp_int.to_s, '%s')
   end
 
@@ -97,5 +124,18 @@ private
       collect_posts_with_offset(user, collection, new_offset, &block)
     end
   end
+
+  def self.collect_instagram_posts_with_max_id(user, collection=[], max_id=nil, &block)
+    response = yield(max_id)
+    collection += response
+    collection.uniq!
+    ids = response.map { |i| i['id']}
+    if response.empty? || user.instagram_posts.where(instagram_id: ids).any?
+      collection.flatten
+    else
+      collect_instagram_posts_with_max_id(user, collection, response.last['id'], &block)
+    end
+  end
+
 
 end
