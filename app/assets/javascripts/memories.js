@@ -14,7 +14,6 @@ $(document).on('ready page:load', function() {
         window.instgrm.Embeds.process();
       }
 
-      console.log('here');
     });
 
   });
@@ -38,6 +37,12 @@ $(document).on('ready page:load', function() {
 
         if(data['memories_count'] > 0) {
           $(form).children('input[type=submit]').prop('disabled', true);
+        }
+
+        if($('.generate_memories input[type=submit]:enabled').length == 0) {
+          $('#import_holder').fadeOut(function() {
+            $('#new_memory_holder').show();
+          });
         }
 
       });

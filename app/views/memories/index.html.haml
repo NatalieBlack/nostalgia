@@ -1,17 +1,19 @@
-- if current_user.memories.any?
+#new_memory_holder{ class: hidden_or_not }
   = button_to "Take me back", memories_path, method: :get, id: 'new_memory'
 
-  .memory
+.memory
+  - if current_user.memories.any?
     = @memory.display
 
-- else
-  %h2= "Import memories from:"
-  - current_user.sources_to_import.each do |source|
-    = form_tag memories_path, class: 'generate_memories' do
-      = hidden_field_tag :source, source
-      = submit_tag "", id: "#{source}_submit"
-  #initial_loading
-    = render '/shared/loading'
+- if current_user.memories.empty?
+  #import_holder
+    %h2= "Import memories from:"
+    - current_user.sources_to_import.each do |source|
+      = form_tag memories_path, class: 'generate_memories' do
+        = hidden_field_tag :source, source
+        = submit_tag "", id: "#{source}_submit"
+    #initial_loading
+      = render '/shared/loading'
 
-  .update
-    = "" 
+    .update
+      = "" 
