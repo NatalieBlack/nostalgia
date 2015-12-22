@@ -11,14 +11,14 @@ class MemoriesController < ApplicationController
 
   def create
     if params[:source] == "twitter"
-      @memories = Memory.twitter_history_for_user(current_user)
+      @memories = Tweet.history_for_user(current_user)
     elsif params[:source] == "tumblr"
-      @memories = Memory.tumblr_history_for_user(current_user)
+      @memories = TumblrPost.history_for_user(current_user)
     else
-      @memories = Memory.history_for_user(current_user)
+      @memories = InstagramPost.history_for_user(current_user)
     end
 
-    render json: {memories_count: @memories.count}
+    render json: { memories_count: @memories.count }
   end
 
 end

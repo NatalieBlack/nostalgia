@@ -9,4 +9,39 @@ class InstagramPost < ActiveRecord::Base
     "<div class=\"instagram_embed\"><img src=\"#{image_url}\" height=\"#{height}\" width=\"#{width}\">
      <p>#{caption}</p></div>".html_safe
   end
+
+  def self.history_for_user(u)
+      Rails.logger.info "instagram history for #{u.name}"
+      created = []
+
+      posts = Memory.collect_instagram_posts_with_max_id(u) do |id|
+        Rails.logger.info "calling instagram API until #{id}"
+        url = "#{BASE_INSTAGRAM_URL}/#{u.instagram_name}/media"
+        url += "?max_id=#{id}" unless id.nil?
+        r = HTTParty.get(url)
+        r['items']
+      end
+
+      posts.each do |p|
+        break if u.instagram_posts.find_by(instagram_id: p['id'])
+        Rails.logger.info "creating instagram post #{p['id']}"
+
+        new_post = InstagramPost.create({
+          user_id: u.id,
+          instagram_id: p['id'],
+          time: Memory.convert_timestamp(p['created_time']),
+          image_url: p['images']['standard_resolution']['url'],
+          height:p['images']['standard_resolution']['height'],
+          width: p['images']['standard_resolution']['width'],
+          caption: p['caption']['text'],
+          url: convert_ig_link(p['link'])
+        })
+      end
+  end
+
+  private
+  def self.convert_ig_link(url)
+    url.gsub(/www\./, '')
+  end
+
 end
