@@ -33,7 +33,7 @@ class InstagramPost < ActiveRecord::Base
           image_url: p['images']['standard_resolution']['url'],
           height:p['images']['standard_resolution']['height'],
           width: p['images']['standard_resolution']['width'],
-          caption: p['caption']['text'],
+          caption: try_caption(p),
           url: convert_ig_link(p['link'])
         })
       end
@@ -42,6 +42,10 @@ class InstagramPost < ActiveRecord::Base
   private
   def self.convert_ig_link(url)
     url.gsub(/www\./, '')
+  end
+
+  def self.try_caption(p)
+    p['caption'] ? p['caption']['text'] : ''
   end
 
 end
