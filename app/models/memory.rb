@@ -1,5 +1,6 @@
-class Memory
-  BASE_INSTAGRAM_URL = 'https://www.instagram.com' 
+module Memory
+  BASE_INSTAGRAM_URL = "https://www.instagram.com"
+
   def self.history_for_user(u)
     Rails.logger.info "importing memories for #{u.name}"
     tweets = twitter_history_for_user(u)
@@ -29,7 +30,11 @@ class Memory
           user_id: u.id,
           instagram_id: p['id'],
           time: convert_timestamp(p['created_time']),
-          url: p['link']
+          image_url: p['images']['standard_resolution']['url'],
+          height:p['images']['standard_resolution']['height'],
+          width: p['images']['standard_resolution']['width'],
+          caption: p['caption']['text'],
+          url: convert_ig_link(p['link'])
         })
       end
   end
@@ -136,5 +141,8 @@ private
     end
   end
 
+  def self.convert_ig_link(url)
+    url.gsub(/www\./, '')
+  end
 
 end

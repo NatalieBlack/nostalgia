@@ -201,3 +201,10 @@ input[type="submit"] {
     background-color: $peach;
   }
 }
+
+.instagram_embed {
+  color: black;
+  border: $dark-gray;
+  padding: 10px;
+  box-shadow: 0 2px 5px 0 $shadow, 0 2px 10px 0 $shadow;
+}

@@ -1,4 +1,24 @@
 $(document).on('ready page:load', function() {
+  $('#new_memory').on('click', function(e) {
+
+    e.preventDefault();
+
+    $.get(this.action, function(data) {
+      $('.memory').html(data);
+
+      if(typeof twttr !== "undefined") {
+        twttr.widgets.load();
+      }
+
+      if ( typeof window.instgrm !== 'undefined' ) {
+        window.instgrm.Embeds.process();
+      }
+
+      console.log('here');
+    });
+
+  });
+
   $('.generate_memories').on('submit', function(e) {
     e.preventDefault();
     var form = this;
@@ -34,7 +54,6 @@ $(document).on('ready page:load', function() {
       $('#latest_loading').fadeIn();
     });
 
-
     $.post(form.action, function(data) {
 
       $('#latest_loading').fadeOut(function() {
@@ -43,6 +62,7 @@ $(document).on('ready page:load', function() {
         $(form).remove();
       });
     });
+
   });
 
 });

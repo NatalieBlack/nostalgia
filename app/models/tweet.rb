@@ -1,4 +1,5 @@
 class Tweet < ActiveRecord::Base
+  include Memory
   validates_uniqueness_of :twitter_id
   validates_presence_of :twitter_id, :time, :user_id, :url
 

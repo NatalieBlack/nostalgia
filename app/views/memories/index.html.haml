@@ -1,8 +1,10 @@
 - if current_user.memories.any?
-  = button_to "Take me back", memories_path, method: :get, id: 'new_memory', remote: :true
+  = button_to "Take me back", memories_path, method: :get, id: 'new_memory'
 
   .memory
     = @memory.display
+  .memory
+    = @memory.display2
 
 - else
   %h2= "Import memories from:"

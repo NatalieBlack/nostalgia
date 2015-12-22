@@ -1,4 +1,5 @@
 class TumblrPost < ActiveRecord::Base
+  include Memory
   has_many :tags, class_name: 'TumblrTag', dependent: :destroy
   def display 
     html = HTTParty.get("#{url}/embed").body

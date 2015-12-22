@@ -3,9 +3,9 @@ class MemoriesController < ApplicationController
 
   def index 
   	@memory = current_user.memories.sample
-    respond_to do |format|
-      format.html
-      format.js
+    
+    if request.xhr?
+      render html: @memory.display
     end
   end
 

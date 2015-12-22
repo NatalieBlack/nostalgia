@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :twitter_name, :tumblr_url, :instagram_name
 
   def memories
-    tweets + tumblr_posts
+    tweets + tumblr_posts + instagram_posts
   end
 
   def sources_to_import
