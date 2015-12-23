@@ -44,6 +44,8 @@ gem 'devise'
 
 gem 'twitter'
 gem 'tumblr_client'
+gem "koala"
+gem 'omniauth-facebook'
 
 gem "figaro"
 gem 'httparty'
