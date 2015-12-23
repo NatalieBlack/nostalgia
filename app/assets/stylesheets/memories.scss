@@ -195,6 +195,11 @@ input[type="submit"] {
   background-image: image-url('instagram.svg');
 }
 
+#facebook_submit {
+  @include icon-button;
+  background-image: image-url('facebook.svg');
+}
+
 #import_latest {
   display: inline-block;
   font-family: $heading-font-family;

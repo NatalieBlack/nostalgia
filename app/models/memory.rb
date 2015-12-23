@@ -38,16 +38,5 @@ module Memory
     end
   end
 
-  def self.collect_instagram_posts_with_max_id(user, collection=[], max_id=nil, &block)
-    response = yield(max_id)
-    collection += response
-    collection.uniq!
-    ids = response.map { |i| i['id']}
-    if response.empty? || user.instagram_posts.where(instagram_id: ids).any?
-      collection.flatten
-    else
-      collect_instagram_posts_with_max_id(user, collection, response.last['id'], &block)
-    end
-  end
 
 end

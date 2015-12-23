@@ -14,7 +14,7 @@ class InstagramPost < ActiveRecord::Base
       Rails.logger.info "instagram history for #{u.name}"
       created = []
 
-      posts = Memory.collect_instagram_posts_with_max_id(u) do |id|
+      posts = collect_posts_with_max_id(u) do |id|
         Rails.logger.info "calling instagram API until #{id}"
         url = "#{BASE_INSTAGRAM_URL}/#{u.instagram_name}/media"
         url += "?max_id=#{id}" unless id.nil?
@@ -46,6 +46,18 @@ class InstagramPost < ActiveRecord::Base
 
   def self.try_caption(p)
     p['caption'] ? p['caption']['text'] : ''
+  end
+
+  def self.collect_posts_with_max_id(user, collection=[], max_id=nil, &block)
+    response = yield(max_id)
+    collection += response
+    collection.uniq!
+    ids = response.map { |i| i['id']}
+    if response.empty? || user.instagram_posts.where(instagram_id: ids).any?
+      collection.flatten
+    else
+      collect_posts_with_max_id(user, collection, response.last['id'], &block)
+    end
   end
 
 end
