@@ -12,21 +12,21 @@ class FacebookPost < ActiveRecord::Base
       Rails.logger.info "facebook history for #{u.name}"
       created = []
 
-      posts = collect_posts(u)
+      posts = collect_posts(u).select{|p| p['message'] }
 
       posts.each do |p|
         break if u.facebook_posts.find_by(facebook_id: p['id'])
         Rails.logger.info "creating facebook post #{p['id']}"
 
-        if p['message'].present?
-          new_post = FacebookPost.create({
-            user_id: u.id,
-            facebook_id: p['id'],
-            time: Memory.convert_timestamp(p['created_time']),
-            message: p['message'],
-          })
-        end
+        new_post = FacebookPost.create({
+          user_id: u.id,
+          facebook_id: p['id'],
+          time: Memory.convert_timestamp(p['created_time']),
+          message: p['message'],
+        })
       end
+
+      posts
   end
 
   private
