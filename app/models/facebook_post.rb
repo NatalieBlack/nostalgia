@@ -6,6 +6,7 @@ class FacebookPost < ActiveRecord::Base
   belongs_to :user
 
   def display
+    "<div class=\"fb_outer\"><p>#{message}</p></div>".html_safe
   end
 
   def self.history_for_user(u)
