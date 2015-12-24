@@ -67,4 +67,8 @@ class User < ActiveRecord::Base
     Koala::Facebook::API.new(identities.find_by(provider: :facebook).accesstoken)
   end
 
+  def needs_to_auth?
+    facebook_username && identities.find_by(provider: :facebook).nil?
+  end
+
 end

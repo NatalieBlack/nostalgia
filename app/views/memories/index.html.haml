@@ -1,5 +1,3 @@
-= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-
 #new_memory_holder{ class: hidden_or_not }
   = button_to "Take me back", memories_path, method: :get, id: 'new_memory'
 
@@ -7,7 +5,10 @@
   - if current_user.memories.any?
     = @memory.display
 
-- if current_user.memories.empty?
+- if current_user.needs_to_auth?
+  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+
+- elsif current_user.memories.empty?
   #import_holder
     %h2= "Import memories from:"
     - current_user.sources_to_import.each do |source|
