@@ -23,6 +23,18 @@
     <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %>
   </div>
 
+  <div class="field">
+    <%= f.text_field :tumblr_url, autocomplete: "off", placeholder: "Your twitter name" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :twitter_name, autocomplete: "off", placeholder: "Your tumblr url", title: "e.g. thatsillynostalgia.tumblr.com" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :instagram_name, autocomplete: "off", placeholder: "Your instagram username" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
