@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
     (
     tweets.destroy_all &&
     tumblr_posts.destroy_all &&
-    instagram_posts.destroy_all
+    instagram_posts.destroy_all &&
+    facebook_posts.destroy_all
     )
   end
 
