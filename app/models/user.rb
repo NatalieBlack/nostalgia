@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     tweets + tumblr_posts + instagram_posts + facebook_posts
   end
 
+  def destroy_memories
+    (
+    tweets.destroy_all &&
+    tumblr_posts.destroy_all &&
+    instagram_posts.destroy_all
+    )
+  end
+
   def sources_to_import
     sources = []
     potential = {twitter: twitter_name, tumblr: tumblr_url, instagram: instagram_name, facebook: facebook_username}

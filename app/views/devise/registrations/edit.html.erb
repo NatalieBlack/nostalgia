@@ -23,11 +23,26 @@
     <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %>
   </div>
 
+  <div class="field">
+    <%= f.text_field :tumblr_url, autocomplete: "off", placeholder: "Your twitter name" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :twitter_name, autocomplete: "off", placeholder: "Your tumblr url", title: "e.g. thatsillynostalgia.tumblr.com" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :instagram_name, autocomplete: "off", placeholder: "Your instagram username" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
+<div id="destroy_memories">
+  <%= button_to "Delete my memories", memory_path("nothing") , data: { confirm: "Are you sure?" }, method: :delete, remote: true %>
+</div>
 <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 
 <%= link_to "Back", :back, id: "back_link" %>
