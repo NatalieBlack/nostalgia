@@ -6,7 +6,9 @@
     = @memory.display
 
 - if current_user.needs_to_auth?
-  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+  = link_to user_omniauth_authorize_path(:facebook), class: 'fb_auth_link' do
+    %button
+      %span= "Authenticate with Facebook"
 
 - elsif current_user.memories.empty?
   #import_holder
