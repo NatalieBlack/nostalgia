@@ -40,6 +40,9 @@
   </div>
 <% end %>
 
+<div id="destroy_memories">
+  <%= button_to "Delete my memories", memory_path("nothing") , data: { confirm: "Are you sure?" }, method: :delete, remote: true %>
+</div>
 <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 
 <%= link_to "Back", :back, id: "back_link" %>

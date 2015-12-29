@@ -21,4 +21,12 @@ class MemoriesController < ApplicationController
     render json: { memories_count: @memories.count }
   end
 
+  def destroy
+    if current_user.destroy_memories
+      @msg = "Memories deleted!"
+    else
+      @msg = "Could not delete memories :("
+    end
+  end
+
 end
