@@ -1,5 +1,7 @@
 class FacebookPost < ActiveRecord::Base
   include Memory
+  LIMIT = 25
+
   validates_uniqueness_of :facebook_id
   validates_presence_of :facebook_id, :time, :user_id
 
@@ -35,11 +37,15 @@ class FacebookPost < ActiveRecord::Base
   def self.collect_posts(user)
     client = user.fb_client
     response = client.get_connection('me', 'posts') 
-    total = response
+    total = []
 
-    while(response.next_page.any?)
+    while(response.any?)
       Rails.logger.info "calling facebook API until #{response.last['id']}"
-      total += response.next_page
+      total += response
+      u = response.next_page_params.last["until"]
+      pt = response.next_page_params.last["__paging_token"]
+      opts = {limit: LIMIT, until: u, "__paging_token": pt}
+      response = client.get_connection('me', 'posts', opts)
     end
     total.flatten.uniq
   end
