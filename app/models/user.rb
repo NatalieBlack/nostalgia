@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :tumblr_posts, :dependent => :destroy
   has_many :instagram_posts, :dependent => :destroy
   has_many :facebook_posts, :dependent => :destroy
-  has_many :identities
+  has_many :identities, :dependent => :destroy
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   validates_uniqueness_of :twitter_name, :tumblr_url, :instagram_name, :facebook_username
