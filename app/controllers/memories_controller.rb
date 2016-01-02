@@ -19,7 +19,7 @@ class MemoriesController < ApplicationController
     elsif params[:source] == "facebook"
       @memories = FacebookPost.history_for_user(current_user)
     else
-      @memories = []
+      @memories = Memory.history_for_user(current_user)
     end
 
     render json: { memories_count: @memories.count }

@@ -36,7 +36,11 @@ class InstagramPost < ActiveRecord::Base
           caption: try_caption(p),
           url: convert_ig_link(p['link'])
         })
+
+        created << new_post
       end
+
+     created 
   end
 
   private

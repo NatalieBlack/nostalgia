@@ -27,9 +27,11 @@ class FacebookPost < ActiveRecord::Base
           time: Memory.convert_timestamp(p['created_time']),
           message: p['message'],
         })
+
+        created << new_post
       end
 
-      posts
+      created 
   end
 
   private

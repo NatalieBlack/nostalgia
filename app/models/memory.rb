@@ -6,7 +6,8 @@ module Memory
     tweets = Tweet.history_for_user(u)
     tposts = TumblrPost.history_for_user(u)
     iposts = InstagramPost.history_for_user(u)
-    memories = tweets + tposts + iposts
+    fbposts = FacebookPost.history_for_user(u)
+    memories = tweets + tposts + iposts + fbposts
     Rails.logger.info "done importing #{memories.count} memories for #{u.name}"
     return memories
   end
