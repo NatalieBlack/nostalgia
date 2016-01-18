@@ -1,6 +1,5 @@
 class TumblrPost < ActiveRecord::Base
   include Memory
-  has_many :tags, class_name: 'TumblrTag', dependent: :destroy
 
   def display 
     html = HTTParty.get("#{url}/embed").body
@@ -33,12 +32,6 @@ class TumblrPost < ActiveRecord::Base
           time: Memory.convert_timestamp(p['timestamp']),
           url: p['post_url']
         })
-        p['tags'].each do |t|
-            TumblrTag.create({
-                tumblr_post_id: new_post.id,
-                content: t
-            })
-        end
 
         created << new_post
       end
