@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20151223211723) do
   end
 
   create_table "identities", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "provider"
-    t.string  "accesstoken"
-    t.string  "refreshtoken"
-    t.string  "uid"
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
